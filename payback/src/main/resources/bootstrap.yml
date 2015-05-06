@@ -8,6 +8,8 @@ spring:
 eureka:
   instance:
     preferIpAddress: true
+    metadataMap:
+      cluster: GeeCON
   client:
     serviceUrl:
       defaultZone: http://registry:8761/eureka/

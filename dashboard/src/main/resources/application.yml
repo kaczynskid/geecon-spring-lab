@@ -1,0 +1,12 @@
+info:
+  component: "${project.name}"
+
+server:
+  port: 8989
+
+management:
+  port: 8990
+
+turbine:
+  appConfig: customer-service,merchant-service,payback-service
+  clusterNameExpression: 'default'

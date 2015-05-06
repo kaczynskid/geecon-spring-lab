@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: payback-service
+  cloud:
+    config:
+      uri: http://config:8888/
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+
+logging:
+  file: app.log

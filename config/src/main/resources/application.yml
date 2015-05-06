@@ -1,0 +1,11 @@
+info:
+  component: "${project.name}"
+
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true

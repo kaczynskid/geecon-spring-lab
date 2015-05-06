@@ -1,0 +1,63 @@
+
+payback:
+  image: spring-lab-geecon/payback
+  links:
+    - registry:registry
+    - config:config
+    - mongo:mongo
+  environment:
+    - "DEBUG=true"
+    - "SPRING_PROFILES_ACTIVE=cloud"
+
+merchant:
+  image: spring-lab-geecon/merchant
+  links:
+    - registry:registry
+    - config:config
+    - mongo:mongo
+  environment:
+    - "DEBUG=true"
+    - "SPRING_PROFILES_ACTIVE=cloud"
+
+customer:
+  image: spring-lab-geecon/customer
+  links:
+    - registry:registry
+    - config:config
+    - postgres:postgres
+  environment:
+    - "DEBUG=true"
+    - "SPRING_PROFILES_ACTIVE=cloud"
+
+config:
+  image: spring-lab-geecon/config
+  links:
+    - registry:registry
+  volumes:
+    - "/home/darek/Devel/Workspace/Home/geecon/spring-lab-config:/repo"
+  environment:
+    - "DEBUG=true"
+    - "SPRING_PROFILES_ACTIVE=cloud"
+    - "SPRING_CLOUD_CONFIG_SERVER_GIT_URI=file:///repo"
+
+dashboard:
+  image: spring-lab-geecon/dashboard
+  links:
+    - registry:registry
+  environment:
+    - "DEBUG=true"
+    - "SPRING_PROFILES_ACTIVE=cloud"
+
+registry:
+  image: spring-lab-geecon/registry
+  environment:
+    - "DEBUG=true"
+    - "SPRING_PROFILES_ACTIVE=cloud"
+
+mongo:
+  image: mongo
+
+postgres:
+  image: postgres
+  environment:
+    - "POSTGRES_PASSWORD=geecon"

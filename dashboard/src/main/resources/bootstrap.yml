@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: dashboard-service
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://registry:8761/eureka/
+
+logging:
+  file: app.log

@@ -10,7 +10,7 @@ class Payback {
 
     @Id String id
 
-    String customerId
+    Long customerId
 
     BigDecimal amount
 

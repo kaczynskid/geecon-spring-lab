@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:test;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1
+  jpa:
+    database: H2
+  cloud:
+    discovery:
+      enabled: false
+
+# customer:
+#   blacklist:
+#     - Hitler
+#     - Stalin
+# https://jira.spring.io/browse/SPR-11759
+customer:
+  blacklist: Hitler,Stalin

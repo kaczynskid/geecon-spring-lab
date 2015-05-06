@@ -2,19 +2,20 @@ package payback
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import groovy.transform.CompileStatic
+import org.springframework.cloud.netflix.feign.FeignClient
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET
 
-@RequestMapping('customers')
+@FeignClient("customers-service")
 @CompileStatic
 interface CustomerClient {
 
-    @RequestMapping(value = '/{id}', method = GET)
+    @RequestMapping(value = '/customers/{id}', method = GET)
     CustomerRepresentation findById(@PathVariable('id') Long customerId)
 
-    @RequestMapping(value = '/byCreditCard/{number}', method = GET)
+    @RequestMapping(value = '/customers/byCreditCard/{number}', method = GET)
     CustomerRepresentation findByCreditCardNumber(@PathVariable('number') String creditCardNumber)
 
 }

@@ -1,0 +1,40 @@
+---
+name: add-customer
+url: /customers/add
+controller: AddCustomerCtrl
+---
+
+<div class="grid-container">
+  <h3>Enter new customer data</h3>
+  <form>
+    <div class="grid-block">
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          First name
+          <input type="text" ng-model="customer.firstName" placeholder="John">
+        </label>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Last name
+          <input type="text" ng-model="customer.lastName" placeholder="Smith">
+        </label>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Credit card
+          <input type="text" ng-model="customer.creditCards[0].number" payments-format="card">
+        </label>
+      </div>
+    </div>
+
+    <div class="small-12 medium-12 grid-content">
+      <a class="button float-right" ng-click="addCustomer()">
+        <img zf-iconic="" icon="circle-check" size="small">Save
+      </a>
+      <a class="button float-right" ui-sref="customers">
+        <img zf-iconic="" icon="circle-x" size="small">Cancel
+      </a>
+    </div>
+  </form>
+</div>

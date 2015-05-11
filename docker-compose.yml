@@ -1,4 +1,13 @@
 
+paybackui:
+  image: spring-lab-geecon/payback-ui
+  links:
+    - registry:registry
+    - config:config
+  environment:
+    - "DEBUG=true"
+    - "SPRING_PROFILES_ACTIVE=cloud"
+
 payback:
   image: spring-lab-geecon/payback
   links:
@@ -36,10 +45,10 @@ config:
   environment:
     - "DEBUG=true"
     - "SPRING_PROFILES_ACTIVE=cloud"
-    - "SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/kaczynskid/geecon-spring-lab-config"
-#    - "SPRING_CLOUD_CONFIG_SERVER_GIT_URI=file:///repo"
-#  volumes:
-#    - "/home/darek/Devel/Workspace/Home/geecon/spring-lab-config:/repo"
+#    - "SPRING_CLOUD_CONFIG_SERVER_GIT_URI=https://github.com/kaczynskid/geecon-spring-lab-config"
+    - "SPRING_CLOUD_CONFIG_SERVER_GIT_URI=file:///repo"
+  volumes:
+    - "/home/darek/Devel/Workspace/Home/geecon/spring-lab-config:/repo"
 
 dashboard:
   image: spring-lab-geecon/dashboard

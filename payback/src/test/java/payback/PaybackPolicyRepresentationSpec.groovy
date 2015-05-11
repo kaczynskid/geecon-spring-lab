@@ -1,5 +1,6 @@
 package payback
 
+import payback.merchant.PaybackPolicyRepresentation
 import spock.lang.Specification
 
 import static java.math.BigDecimal.*

@@ -1,0 +1,60 @@
+---
+name: edit-customer
+url: /customers/edit/:id
+controller: EditCustomerCtrl
+---
+
+<div class="grid-container">
+  <h3>Customer data</h3>
+  <form>
+    <div class="grid-block">
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          First name
+          <input type="text" ng-model="customer.firstName" placeholder="John">
+        </label>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Last name
+          <input type="text" ng-model="customer.lastName" placeholder="Smith">
+        </label>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Credit card
+          <input type="text" ng-readonly="true" ng-model="customer.creditCards[0].number"
+                 payments-format="card">
+        </label>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Payback account status
+          <span class="inline-label">
+            <input type="number" ng-readonly="true"  ng-model="payback.amount">
+            <span class="form-label">EUR</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Visited merchants:
+          <input ng-repeat="merchant in payback.merchants" type="text" ng-readonly="true" ng-model="merchant.name">
+        </label>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <a class="button float-right" ng-click="saveCustomer()">
+          <img zf-iconic="" icon="circle-check" size="small">Save
+        </a>
+        <a class="button float-right" ui-sref="add-payback({id: customer.id })">
+          <img zf-iconic="" icon="chevron" size="small">Add purchase
+        </a>
+        <a class="button float-right" ui-sref="customers">
+          <img zf-iconic="" icon="circle-x" size="small">Cancel
+        </a>
+      </div>
+    </div>
+
+  </form>
+</div>

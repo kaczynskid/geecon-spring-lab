@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.util.UriComponentsBuilder
 
 import javax.servlet.http.HttpServletResponse
 
+import static org.springframework.http.HttpStatus.ACCEPTED
 import static org.springframework.http.HttpStatus.BAD_REQUEST
 import static org.springframework.http.ResponseEntity.*
 import static org.springframework.web.bind.annotation.RequestMethod.GET
 import static org.springframework.web.bind.annotation.RequestMethod.POST
+import static org.springframework.web.bind.annotation.RequestMethod.PUT
 
 @RestController
 @RequestMapping('/customers')
@@ -28,6 +31,11 @@ class CustomerController {
     @Autowired
     CustomerController(CustomerService service) {
         this.service = service
+    }
+
+    @RequestMapping(method = GET)
+    List<Customer> findAll() {
+        service.findAll()
     }
 
     @RequestMapping(value = '/{id}', method = GET)
@@ -54,6 +62,15 @@ class CustomerController {
         Customer result = service.create(customer)
         return created(uriBuilder.path('/customers/{id}')
             .buildAndExpand(result.getId()).toUri()).build()
+    }
+
+    @RequestMapping(value = '/{id}',method = PUT)
+    ResponseEntity<Void> update(
+            @PathVariable('id') Long customerId, @RequestBody Customer customer) {
+        customer.setId(customerId)
+        return service.update(customer)
+            .map { accepted().build() }
+            .orElseGet { notFound().build() }
     }
 
     @ExceptionHandler(ValueBlacklisted)

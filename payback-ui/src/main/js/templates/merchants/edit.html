@@ -1,0 +1,77 @@
+---
+name: edit-merchant
+url: /merchants/edit/:id
+controller: EditMerchantCtrl
+---
+
+<div class="grid-container">
+  <h3>Enter new merchant data</h3>
+  <form>
+
+    <div class="grid-block">
+      <div class="small-12 medium-2 grid-content">
+        <label>
+          ID
+          <input type="text" ng-readonly="true" ng-model="merchant.id">
+        </label>
+      </div>
+      <div class="small-12 medium-10 grid-content">
+        <label>
+          Name
+          <input type="text" ng-model="merchant.name" placeholder="Pivotal">
+        </label>
+      </div>
+
+      <div class="small-12 medium-4 grid-content">
+        <label>
+          Payback percentage
+          <span class="inline-label">
+            <input type="number" ng-model="merchant.paybackPolicy.percentage" placeholder="5">
+            <span class="form-label">%</span>
+          </span>
+        </label>
+      </div>
+      <div class="small-12 medium-4 grid-content">
+        <label>
+          Minimal purchase amount (0 for no limit)
+          <span class="inline-label">
+            <input type="number" ng-model="merchant.paybackPolicy.minAmount" placeholder="0">
+            <span class="form-label">EUR</span>
+          </span>
+          </label>
+      </div>
+      <div class="small-12 medium-4 grid-content">
+        <label>
+          Max payback amount (0 for no limit)
+          <span class="inline-label">
+            <input type="number" ng-model="merchant.paybackPolicy.maxPayback" placeholder="0">
+            <span class="form-label">EUR</span>
+          </span>
+        </label>
+      </div>
+
+      <div class="small-12 medium-12 grid-content">
+        <label>Days of week when payback apply (every day when no selection)</label>
+        <span ng-repeat="dayOfWeek in daysOfWeek">
+          <input id="dayOfWeek{{ $index }}" type="checkbox"
+                 checklist-model="merchant.paybackPolicy.daysOfWeek"
+                 checklist-value="dayOfWeek">
+          <label for="dayOfWeek{{ $index }}">{{ dayOfWeek | capitalize }}</label>
+        </span>
+      </div>
+
+      <div class="small-12 medium-12 grid-content">
+        &nbsp;
+      </div>
+
+      <div class="small-12 medium-12 grid-content">
+        <a class="button float-right" ng-click="saveMerchant()">
+          <img zf-iconic="" icon="circle-check" size="small">Save
+        </a>
+        <a class="button float-right" ui-sref="merchants">
+          <img zf-iconic="" icon="circle-x" size="small">Cancel
+        </a>
+      </div>
+    </div>
+  </form>
+</div>

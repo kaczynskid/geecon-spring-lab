@@ -1,0 +1,51 @@
+---
+name: add-payback
+url: /paybacks/add/:id
+controller: AddPaybackCtrl
+---
+
+<div class="grid-container">
+  <h3>Enter purchase data</h3>
+  <form>
+    <div class="grid-block">
+      <div class="small-12 medium-6 grid-content">
+        <label>Credit card number</label>
+        <select ng-model="payback.creditCardNumber"
+                ng-options="creditCard.number as creditCard.number for creditCard in customer.creditCards">
+        </select>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Purchase timestamp
+          <input type="text" ng-model="payback.timestamp" placeholder="yyyy-MM-ddTHH:mm:ss.SSS">
+        </label>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Merchant
+          <select ng-model="payback.merchantId"
+                  ng-options="merchant.id as merchant.name for merchant in merchants._embedded.merchants">
+          </select>
+        </label>
+      </div>
+      <div class="small-12 medium-6 grid-content">
+        <label>
+          Purchase amount
+          <span class="inline-label">
+            <input type="number" ng-model="payback.amount">
+            <span class="form-label">EUR</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <div class="small-12 medium-12 grid-content">
+      <a class="button float-right" ng-click="addPayback()">
+        <img zf-iconic="" icon="circle-check" size="small">Save
+      </a>
+      <a class="button float-right" ui-sref="edit-customer({id: customer.id })">
+        <img zf-iconic="" icon="circle-x" size="small">Cancel
+      </a>
+    </div>
+  </form>
+</div>

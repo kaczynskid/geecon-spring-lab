@@ -25,4 +25,15 @@ class Customer extends AbstractPersistable<Long> {
     @JoinColumn(name = "accountId")
     @NotEmpty Set<CreditCard> creditCards = []
 
+    @Override
+    public void setId(Long id) {
+        super.setId(id)
+    }
+
+    Customer mergeWith(Customer other) {
+        this.firstName = other.firstName ?: this.firstName
+        this.lastName= other.lastName ?: this.lastName
+        return this
+    }
+
 }
